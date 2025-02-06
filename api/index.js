@@ -9,7 +9,7 @@ class Config {
   constructor() {
     this.PORT = process.env.PORT || 8787
     this.API_PREFIX = process.env.API_PREFIX || '/'
-    this.API_KEY = process.env.API_KEY || ''
+    this.API_KEY = process.env.API_KEY || 'sk-lzlnb'
     this.MAX_RETRY_COUNT = process.env.MAX_RETRY_COUNT || 3
     this.RETRY_DELAY = process.env.RETRY_DELAY || 5000
     this.FAKE_HEADERS = process.env.FAKE_HEADERS || {
@@ -76,6 +76,7 @@ router.get(config.API_PREFIX + '/v1/models', () =>
       { id: 'gpt-4o-mini', object: 'model', owned_by: 'ddg' },
       { id: 'claude-3-haiku', object: 'model', owned_by: 'ddg' },
       { id: 'llama-3.1-70b', object: 'model', owned_by: 'ddg' },
+      { id: 'o3-mini', object: 'model', owned_by: 'ddg' },
       { id: 'mixtral-8x7b', object: 'model', owned_by: 'ddg' },
     ],
   })
@@ -249,6 +250,9 @@ function convertModel(inputModel) {
     case 'llama-3.1-70b':
       model = 'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo'
       break
+    case 'o3-mini':
+      model = 'o3-mini'
+      break  
     case 'mixtral-8x7b':
       model = 'mistralai/Mixtral-8x7B-Instruct-v0.1'
       break
